@@ -1,21 +1,10 @@
-//
-//  GameScene.swift
-//  NortLaserRace
-//
-//  Created by Alumne on 29/4/21.
-// swiftlint:disable line_length
-
 import SpriteKit
 import GameplayKit
 
-class GarageScene: SKScene {
-
+class GameScene: SKScene {
     override func didMove(to view: SKView) {
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if touches.first != nil {
-            self.scene!.view!.presentScene(SKScene(fileNamed: "GameScene")!, transition: SKTransition.doorsCloseHorizontal(withDuration: 1))
-        }
     }
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
     }
@@ -24,6 +13,6 @@ class GarageScene: SKScene {
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
     }
     override func update(_ currentTime: TimeInterval) {
-        print("Garage Scene")
+        print("Game Scene")
     }
 }

@@ -14,7 +14,7 @@ class GameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         if let view = self.view as? SKView?, view != nil {
-            // Load the SKScene from 'GameScene.sks'
+            // Load the SKScene from 'GarageScene.sks'
             if let scene = SKScene(fileNamed: "GarageScene") {
                 // Set the scale mode to scale to fit the window
                 scene.scaleMode = .aspectFill
