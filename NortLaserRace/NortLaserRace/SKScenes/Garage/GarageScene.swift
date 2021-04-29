@@ -13,8 +13,12 @@ class GarageScene: SKScene {
     override func didMove(to view: SKView) {
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if touches.first != nil {
-            self.scene!.view!.presentScene(SKScene(fileNamed: "GameScene")!, transition: SKTransition.doorsCloseHorizontal(withDuration: 1))
+        for touch in touches {
+              let location = touch.location(in: self)
+              let touchedNode = atPoint(location)
+              if touchedNode.name == "HellModeButton" {
+                self.scene!.view!.presentScene(SKScene(fileNamed: "GameScene")!, transition: SKTransition.doorsCloseHorizontal(withDuration: 1))
+              }
         }
     }
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
