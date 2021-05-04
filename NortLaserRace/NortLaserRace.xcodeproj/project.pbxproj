@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EF47E7672641C6CA0046EFAA /* PlayerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF47E7662641C6CA0046EFAA /* PlayerModel.swift */; };
 		EF656270263B1D7B00C4DE6B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF65626F263B1D7B00C4DE6B /* AppDelegate.swift */; };
 		EF656272263B1D7B00C4DE6B /* GarageScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = EF656271263B1D7B00C4DE6B /* GarageScene.sks */; };
 		EF656276263B1D7B00C4DE6B /* GarageScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF656275263B1D7B00C4DE6B /* GarageScene.swift */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EF47E7662641C6CA0046EFAA /* PlayerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerModel.swift; sourceTree = "<group>"; };
 		EF65626C263B1D7B00C4DE6B /* NortLaserRace.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NortLaserRace.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF65626F263B1D7B00C4DE6B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EF656271263B1D7B00C4DE6B /* GarageScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GarageScene.sks; sourceTree = "<group>"; };
@@ -75,6 +77,7 @@
 		EF656285263B1F5400C4DE6B /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				EF47E7662641C6CA0046EFAA /* PlayerModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -206,6 +209,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF47E7672641C6CA0046EFAA /* PlayerModel.swift in Sources */,
 				EF656276263B1D7B00C4DE6B /* GarageScene.swift in Sources */,
 				EF656278263B1D7B00C4DE6B /* GameViewController.swift in Sources */,
 				EF656291263B258500C4DE6B /* GameScene.swift in Sources */,

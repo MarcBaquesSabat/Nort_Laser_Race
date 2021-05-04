@@ -18,6 +18,7 @@ class GarageScene: SKScene {
               let touchedNode = atPoint(location)
               if touchedNode.name == "HellModeButton" {
                 self.scene!.view!.presentScene(SKScene(fileNamed: "GameScene")!, transition: SKTransition.doorsCloseHorizontal(withDuration: 1))
+                self.scene!.scaleMode = .aspectFit
               }
         }
     }
