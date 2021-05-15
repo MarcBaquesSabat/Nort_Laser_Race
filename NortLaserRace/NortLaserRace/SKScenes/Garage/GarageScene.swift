@@ -17,8 +17,9 @@ class GarageScene: SKScene {
               let location = touch.location(in: self)
               let touchedNode = atPoint(location)
               if touchedNode.name == "HellModeButton" {
-                self.scene!.view!.presentScene(SKScene(fileNamed: "GameScene")!, transition: SKTransition.doorsCloseHorizontal(withDuration: 1))
-                self.scene!.scaleMode = .aspectFit
+                guard let sceneToLoad = SKScene(fileNamed: "GameScene") else { return }
+                sceneToLoad.scaleMode = .aspectFit
+                self.scene!.view!.presentScene(sceneToLoad, transition: SKTransition.doorsCloseHorizontal(withDuration: 1))
               }
         }
     }
@@ -29,6 +30,5 @@ class GarageScene: SKScene {
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
     }
     override func update(_ currentTime: TimeInterval) {
-        print("Garage Scene")
     }
 }

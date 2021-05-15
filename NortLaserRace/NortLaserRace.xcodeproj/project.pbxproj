@@ -16,6 +16,10 @@
 		EF65627D263B1D7C00C4DE6B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF65627C263B1D7C00C4DE6B /* Assets.xcassets */; };
 		EF656291263B258500C4DE6B /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF656290263B258500C4DE6B /* GameScene.swift */; };
 		EF656295263B25BD00C4DE6B /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = EF656294263B25BD00C4DE6B /* GameScene.sks */; };
+		EFA5D87A264FE8CC00752B13 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFA5D879264FE8CC00752B13 /* PlayerView.swift */; };
+		EFA5D87D264FE96B00752B13 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFA5D87C264FE96B00752B13 /* UserModel.swift */; };
+		EFA5D881264FE9B600752B13 /* MatchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFA5D880264FE9B600752B13 /* MatchManager.swift */; };
+		EFA5D886264FEA7900752B13 /* PlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFA5D885264FEA7900752B13 /* PlayerViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +34,10 @@
 		EF65627E263B1D7C00C4DE6B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EF656290263B258500C4DE6B /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		EF656294263B25BD00C4DE6B /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
+		EFA5D879264FE8CC00752B13 /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
+		EFA5D87C264FE96B00752B13 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		EFA5D880264FE9B600752B13 /* MatchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchManager.swift; sourceTree = "<group>"; };
+		EFA5D885264FEA7900752B13 /* PlayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +70,8 @@
 		EF65626E263B1D7B00C4DE6B /* NortLaserRace */ = {
 			isa = PBXGroup;
 			children = (
+				EFA5D884264FEA6100752B13 /* ViewModels */,
+				EFA5D87F264FE98C00752B13 /* Systems */,
 				EF65628B263B23B600C4DE6B /* SKScenes */,
 				EF656286263B1F5A00C4DE6B /* Views */,
 				EF656285263B1F5400C4DE6B /* Models */,
@@ -78,6 +88,7 @@
 			isa = PBXGroup;
 			children = (
 				EF47E7662641C6CA0046EFAA /* PlayerModel.swift */,
+				EFA5D87C264FE96B00752B13 /* UserModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -85,6 +96,7 @@
 		EF656286263B1F5A00C4DE6B /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				EFA5D879264FE8CC00752B13 /* PlayerView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -114,6 +126,22 @@
 				EF656294263B25BD00C4DE6B /* GameScene.sks */,
 			);
 			path = Game;
+			sourceTree = "<group>";
+		};
+		EFA5D87F264FE98C00752B13 /* Systems */ = {
+			isa = PBXGroup;
+			children = (
+				EFA5D880264FE9B600752B13 /* MatchManager.swift */,
+			);
+			path = Systems;
+			sourceTree = "<group>";
+		};
+		EFA5D884264FEA6100752B13 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				EFA5D885264FEA7900752B13 /* PlayerViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -209,9 +237,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EFA5D886264FEA7900752B13 /* PlayerViewModel.swift in Sources */,
 				EF47E7672641C6CA0046EFAA /* PlayerModel.swift in Sources */,
+				EFA5D87D264FE96B00752B13 /* UserModel.swift in Sources */,
 				EF656276263B1D7B00C4DE6B /* GarageScene.swift in Sources */,
 				EF656278263B1D7B00C4DE6B /* GameViewController.swift in Sources */,
+				EFA5D87A264FE8CC00752B13 /* PlayerView.swift in Sources */,
+				EFA5D881264FE9B600752B13 /* MatchManager.swift in Sources */,
 				EF656291263B258500C4DE6B /* GameScene.swift in Sources */,
 				EF656270263B1D7B00C4DE6B /* AppDelegate.swift in Sources */,
 			);

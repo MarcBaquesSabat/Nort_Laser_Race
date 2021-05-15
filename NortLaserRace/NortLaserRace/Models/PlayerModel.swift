@@ -7,16 +7,17 @@
 
 import Foundation
 
-class Player {
-    var name: String = "Unnamed"
+class PlayerModel {
+    var name: String = "Guest"
     var score: Int = 0
     var lives: Int = 3
-    var avatar: Int
+    var avatar: Int = 0
     
-    init(_ avatar: Int) {
-        self.avatar = avatar
+    init() {
+        
     }
 }
+
 
 class MovementController {
 }
