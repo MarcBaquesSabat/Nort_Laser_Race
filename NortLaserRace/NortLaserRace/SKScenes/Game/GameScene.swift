@@ -3,32 +3,16 @@ import GameplayKit
 import Foundation
 
 class GameScene: SKScene {
-    let matchManager: MatchManager = MatchManager()
-    var player1: PlayerViewModel?
-    var player2: PlayerViewModel?
+    var matchManager: MatchManager?
     var swipeableView: UIView?
     override func didMove(to view: SKView) {
-        player1 = PlayerViewModel(PlayerModel(), PlayerView("Player 1", "Player01", self), MovementDirection.movementLeft)
-        player2 = PlayerViewModel(PlayerModel(), PlayerView("Player 2", "Player01", self), MovementDirection.movementRight)
-        player1?.setPosition(CGPoint(x: 400, y: 0))
-        player2?.setPosition(CGPoint(x: -200, y: 0))
-        player1?.movePlayer()
-        player2?.movePlayer()
-        swipeableView = UIView(frame: CGRect(origin: .zero, size: CGSize(width: (self.view?.bounds.width)!, height: (self.view?.bounds.height)!)))
-        guard let swipeView = swipeableView else { return }
-        self.view?.addSubview(swipeView)
-        swipeView.addGestureRecognizer(createSwipeGestureRecognizer(for: .up))
-        swipeView.addGestureRecognizer(createSwipeGestureRecognizer(for: .down))
-        swipeView.addGestureRecognizer(createSwipeGestureRecognizer(for: .left))
-        swipeView.addGestureRecognizer(createSwipeGestureRecognizer(for: .right))
-    }
-    @objc private func didSwipe(_ sender: UISwipeGestureRecognizer) {
-        player1?.rotatePlayer(swipeDirectionToPlayerDirection(sender.direction))
-    }
-    private func createSwipeGestureRecognizer(for direction: UISwipeGestureRecognizer.Direction) -> UISwipeGestureRecognizer {
-        let swipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(didSwipe(_:)))
-        swipeGestureRecognizer.direction = direction
-        return swipeGestureRecognizer
+        initializeSwipe()
+        matchManager = MatchManager(self)
+        initBorderPhysics("Border1")
+        initBorderPhysics("Border2")
+        initBorderPhysics("Border3")
+        initBorderPhysics("Border4")
+        self.physicsWorld.contactDelegate = self
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
     }
@@ -39,6 +23,33 @@ class GameScene: SKScene {
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
     }
     override func update(_ currentTime: TimeInterval) {
+    }
+    func initBorderPhysics(_ border: String) {
+        let nodeBorder = self.childNode(withName: "//\(border)") as? SKSpriteNode
+        guard let sprite = nodeBorder else { return }
+        sprite.physicsBody = SKPhysicsBody(texture: sprite.texture!, size: sprite.size)
+        guard let physicsBody = sprite.physicsBody else { return }
+        physicsBody.affectedByGravity = false
+        physicsBody.categoryBitMask = CollisionManager.getObstacleCategory()
+        physicsBody.collisionBitMask = CollisionManager.getNullMask()
+        physicsBody.contactTestBitMask = CollisionManager.getObstacleContact()
+    }
+    @objc private func didSwipe(_ sender: UISwipeGestureRecognizer) {
+        matchManager?.player?.rotatePlayer(swipeDirectionToPlayerDirection(sender.direction))
+    }
+    private func createSwipeGestureRecognizer(for direction: UISwipeGestureRecognizer.Direction) -> UISwipeGestureRecognizer {
+        let swipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(didSwipe(_:)))
+        swipeGestureRecognizer.direction = direction
+        return swipeGestureRecognizer
+    }
+    private func initializeSwipe() {
+        swipeableView = UIView(frame: CGRect(origin: .zero, size: CGSize(width: (self.view?.bounds.width)!, height: (self.view?.bounds.height)!)))
+        guard let swipeView = swipeableView else { return }
+        self.view?.addSubview(swipeView)
+        swipeView.addGestureRecognizer(createSwipeGestureRecognizer(for: .up))
+        swipeView.addGestureRecognizer(createSwipeGestureRecognizer(for: .down))
+        swipeView.addGestureRecognizer(createSwipeGestureRecognizer(for: .left))
+        swipeView.addGestureRecognizer(createSwipeGestureRecognizer(for: .right))
     }
     private func swipeDirectionToPlayerDirection(_ direction: UISwipeGestureRecognizer.Direction) -> MovementDirection {
         switch direction {
@@ -55,4 +66,5 @@ class GameScene: SKScene {
         }
         return .movementRight
     }
+
 }

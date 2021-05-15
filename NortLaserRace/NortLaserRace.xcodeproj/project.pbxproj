@@ -20,6 +20,8 @@
 		EFA5D87D264FE96B00752B13 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFA5D87C264FE96B00752B13 /* UserModel.swift */; };
 		EFA5D881264FE9B600752B13 /* MatchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFA5D880264FE9B600752B13 /* MatchManager.swift */; };
 		EFA5D886264FEA7900752B13 /* PlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFA5D885264FEA7900752B13 /* PlayerViewModel.swift */; };
+		EFA5D88E2650240000752B13 /* CollisionsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFA5D88D2650240000752B13 /* CollisionsManager.swift */; };
+		EFA5D89126502AAB00752B13 /* GameScenePhysicsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFA5D89026502AAB00752B13 /* GameScenePhysicsExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +40,8 @@
 		EFA5D87C264FE96B00752B13 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		EFA5D880264FE9B600752B13 /* MatchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchManager.swift; sourceTree = "<group>"; };
 		EFA5D885264FEA7900752B13 /* PlayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewModel.swift; sourceTree = "<group>"; };
+		EFA5D88D2650240000752B13 /* CollisionsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollisionsManager.swift; sourceTree = "<group>"; };
+		EFA5D89026502AAB00752B13 /* GameScenePhysicsExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScenePhysicsExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +128,7 @@
 			children = (
 				EF656290263B258500C4DE6B /* GameScene.swift */,
 				EF656294263B25BD00C4DE6B /* GameScene.sks */,
+				EFA5D89026502AAB00752B13 /* GameScenePhysicsExtension.swift */,
 			);
 			path = Game;
 			sourceTree = "<group>";
@@ -132,6 +137,7 @@
 			isa = PBXGroup;
 			children = (
 				EFA5D880264FE9B600752B13 /* MatchManager.swift */,
+				EFA5D88D2650240000752B13 /* CollisionsManager.swift */,
 			);
 			path = Systems;
 			sourceTree = "<group>";
@@ -237,10 +243,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EFA5D88E2650240000752B13 /* CollisionsManager.swift in Sources */,
 				EFA5D886264FEA7900752B13 /* PlayerViewModel.swift in Sources */,
 				EF47E7672641C6CA0046EFAA /* PlayerModel.swift in Sources */,
 				EFA5D87D264FE96B00752B13 /* UserModel.swift in Sources */,
 				EF656276263B1D7B00C4DE6B /* GarageScene.swift in Sources */,
+				EFA5D89126502AAB00752B13 /* GameScenePhysicsExtension.swift in Sources */,
 				EF656278263B1D7B00C4DE6B /* GameViewController.swift in Sources */,
 				EFA5D87A264FE8CC00752B13 /* PlayerView.swift in Sources */,
 				EFA5D881264FE9B600752B13 /* MatchManager.swift in Sources */,

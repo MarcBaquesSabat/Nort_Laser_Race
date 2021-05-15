@@ -21,7 +21,7 @@ class PlayerViewModel {
     let moveActionKey: String = "moveActionKey"
     var pView: PlayerView?
     var pModel: PlayerModel?
-    var speed: Double = 100
+    var speed: Double = 200
     var direction: MovementDirection = .movementRight
     init(_ playerModel: PlayerModel, _ playerView: PlayerView, _ direction: MovementDirection) {
         self.pView = playerView
@@ -35,6 +35,9 @@ class PlayerViewModel {
     }
     func setPosition(_ newPosition: CGPoint) {
         self.pView?.updatePosition(newPosition)
+    }
+    func setSpeed(_ speed: Double) {
+        self.speed = speed
     }
     func movePlayer() {
         let node = self.pView?.sprite
