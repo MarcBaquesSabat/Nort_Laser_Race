@@ -15,6 +15,9 @@ class GameScene: SKScene {
         self.physicsWorld.contactDelegate = self
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if !matchManager!.isMatchStarted() {
+            matchManager?.startMatch()
+        }
     }
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
     }
@@ -32,7 +35,7 @@ class GameScene: SKScene {
         physicsBody.affectedByGravity = false
         physicsBody.categoryBitMask = CollisionManager.getObstacleCategory()
         physicsBody.collisionBitMask = CollisionManager.getNullMask()
-        physicsBody.contactTestBitMask = CollisionManager.getObstacleContact()
+        physicsBody.contactTestBitMask = CollisionManager.getNullMask()
     }
     @objc private func didSwipe(_ sender: UISwipeGestureRecognizer) {
         matchManager?.player?.rotatePlayer(swipeDirectionToPlayerDirection(sender.direction))

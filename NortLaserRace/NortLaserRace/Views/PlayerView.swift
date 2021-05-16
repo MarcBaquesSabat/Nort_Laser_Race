@@ -10,11 +10,11 @@ import UIKit
 import SpriteKit
 
 class PlayerView {
-    var position: CGPoint = CGPoint(x: 0, y: 0)
     var sprite: SKSpriteNode?
-    init(_ name: String, _ playerSpriteName: String, _ parent: SKNode ) {
+    init(_ name: String, _ playerSpriteName: String, _ parent: SKNode, _ position: CGPoint ) {
         self.sprite = SKSpriteNode(imageNamed: playerSpriteName)
         self.sprite?.name = name
+        self.sprite?.position = position
         guard let sprite = self.sprite else { return }
         sprite.size = CGSize(width: 75, height: 75)
         createPhysicsBody(sprite)
@@ -30,8 +30,9 @@ class PlayerView {
         spritePhysicBody.contactTestBitMask = CollisionManager.getPlayerContact()
     }
     func updatePosition(_ newPosition: CGPoint) {
-        guard sprite != nil else { return }
-        sprite?.position = newPosition
+        guard let spr = self.sprite else { return }
+        spr.removeAllActions()
+        spr.run(SKAction.move(to: newPosition, duration: 1.0))
     }
     func hide() {
         sprite?.isHidden = true

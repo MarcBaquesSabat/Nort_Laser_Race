@@ -21,16 +21,19 @@ extension GameScene: SKPhysicsContactDelegate {
 
         if oneNodeIsPlayer, oneNodeIsBorder {
             print("Player - Border")
+            print("Node A: \(nameA) Node B: \(nameB)")
+            matchManager?.collisionDetected(colisionEvent: .playerBorder)
             return
         }
         if oneNodeIsIA, oneNodeIsBorder {
             print("IA - Border")
-            
+            matchManager?.collisionDetected(colisionEvent: .IABorder)
             return
         }
 
         if oneNodeIsIA, oneNodeIsPlayer {
             print("Players - IA")
+            matchManager?.collisionDetected(colisionEvent: .playerKillIA)
             return
         }
     }
