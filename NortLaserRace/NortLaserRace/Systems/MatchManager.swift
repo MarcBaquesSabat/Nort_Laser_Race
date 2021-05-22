@@ -23,16 +23,21 @@ enum MatchState {
 }
 
 class MatchManager {
+    // Configuration
+    let preparationTime = 3.0
+    let matchTime = 180.0
+    // Players
     var player: PlayerViewModel?
     var IAPlayer: PlayerViewModel?
+    // Timmers
     var matchGameTimer: GameTimer?
     var preparationGameTimer: GameTimer?
-    var matchTimmer: Timer?
-    var timeLeft = 10.0
-    var preparationTimmer: Timer?
-    var preparationTime = 3.0
-    var matchStarted: Bool = false
+    var matchTimmerView: TimmerView?
+    //Others nodes
+    var startLabel: SKLabelNode?
+    // State
     var matchState: MatchState = .toStart
+    // INIT
     init(_ scene: SKScene) {
         self.player = PlayerViewModel(PlayerModel(),
                                       PlayerView("Player_1", "Player01", scene, CGPoint(x: 400, y: 0)),
@@ -41,24 +46,32 @@ class MatchManager {
                                         PlayerView("IA", "Player01", scene, CGPoint(x: -200, y: 0)),
                                         MovementDirection.movementRight)
         positionPlayers()
-        matchGameTimer = GameTimer(180.0, function: endMatch)
-        preparationGameTimer = GameTimer(3.0, function: startRound)
+        matchGameTimer = GameTimer(matchTime, function: endMatch)
+        preparationGameTimer = GameTimer(preparationTime, function: startRound)
         let timmerLabel = scene.childNode(withName: "//TimmerLabel") as? SKLabelNode
-        _ = TimmerView(matchGameTimer!, timmerLabel: timmerLabel!)
+        if timmerLabel != nil {
+            self.matchTimmerView = TimmerView(matchGameTimer!, timmerLabel: timmerLabel!)
+        }
+        self.startLabel = scene.childNode(withName: "//StartLabel") as? SKLabelNode
+    }
+    func update() {
+        self.matchTimmerView?.update()
     }
     func isMatchStarted() -> Bool {
-        return matchStarted
+        return matchState != .toStart
     }
     func startMatch() {
-        matchGameTimer?.start(self)
-        preparationGameTimer?.start(self)
+        matchGameTimer?.start()
+        preparationGameTimer?.start()
+        self.startLabel?.isHidden = true
         matchState = .waitingRound
-        matchStarted = true
     }
     func startRound() {
         if matchState == .toStart || matchState == .waitingRound {
             print("Start round")
+            player?.canMove = true
             player?.movePlayer()
+            IAPlayer?.canMove = true
             IAPlayer?.movePlayer()
             matchState = .round
         }
@@ -68,13 +81,16 @@ class MatchManager {
             print("End round")
             matchState = .waitingRound
             positionPlayers()
-            preparationGameTimer?.start(self)
+            IAPlayer?.canMove = false
+            player?.canMove = false
+            preparationGameTimer?.start()
         }
     }
     func endMatch() {
         if matchState != .end {
             matchState = .end
             positionPlayers()
+            matchGameTimer?.end()
             // Can be called when:
                 // Timmer ends
                 // Players with no life
@@ -84,49 +100,34 @@ class MatchManager {
     }
     func collisionDetected(colisionEvent: ColisionEvent) {
         guard let IAPlayer = self.IAPlayer, let player = self.player else {return}
-        
-        switch colisionEvent {
-        case .IABorder:
-            IAPlayer.addScore(score: -50)
-            IAPlayer.loseLife()
-            break
-        case .playerBorder:
-            player.addScore(score: -50)
-            player.loseLife()
-            break
-        case .IAKillPlayer:
-            IAPlayer.addScore(score: 100)
-            player.loseLife()
-            break
-        case .playerKillIA:
-            player.addScore(score: 100)
-            IAPlayer.loseLife()
-            break
+        if matchState == .round {
+            switch colisionEvent {
+            case .IABorder:
+                IAPlayer.addScore(score: -50)
+                IAPlayer.loseLife()
+                break
+            case .playerBorder:
+                player.addScore(score: -50)
+                player.loseLife()
+                break
+            case .IAKillPlayer:
+                IAPlayer.addScore(score: 100)
+                player.loseLife()
+                break
+            case .playerKillIA:
+                player.addScore(score: 100)
+                IAPlayer.loseLife()
+                break
+            }
+            if player.isDead() || IAPlayer.isDead() {
+                endMatch()
+                return
+            }
+            endRound()
         }
-        if player.isDead() || IAPlayer.isDead() {
-            endMatch()
-            return
-        }
-        endRound()
     }
     private func positionPlayers() {
         player?.setPosition(CGPoint(x: 400, y: 0))
         IAPlayer?.setPosition(CGPoint(x: -200, y: 0))
-    }
-    @objc func matchSecondElapsed() {
-        timeLeft -= 1
-        if timeLeft <= 0 {
-            matchTimmer?.invalidate()
-            matchTimmer = nil
-            endMatch()
-        }
-    }
-    @objc func preparationSecondElapsed() {
-        preparationTime -= 1
-        if preparationTime <= 0 {
-            preparationTimmer?.invalidate()
-            preparationTimmer = nil
-            startRound()
-        }
     }
 }

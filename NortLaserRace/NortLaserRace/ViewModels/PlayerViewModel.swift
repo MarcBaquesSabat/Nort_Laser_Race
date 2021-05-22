@@ -16,13 +16,13 @@ enum MovementDirection {
 }
 
 class PlayerViewModel {
-
-    var moveAction: SKAction?
-    let moveActionKey: String = "moveActionKey"
-    var pView: PlayerView?
-    var pModel: PlayerModel?
-    var speed: Double = 200
-    var direction: MovementDirection = .movementRight
+    private var moveAction: SKAction?
+    private let moveActionKey: String = "moveActionKey"
+    private var pView: PlayerView?
+    private var pModel: PlayerModel?
+    private var speed: Double = 200
+    private var direction: MovementDirection = .movementRight
+    var canMove: Bool = false
     init(_ playerModel: PlayerModel, _ playerView: PlayerView, _ direction: MovementDirection) {
         self.pView = playerView
         self.pModel = playerModel
@@ -41,15 +41,19 @@ class PlayerViewModel {
         self.speed = speed
     }
     func movePlayer() {
-        let node = self.pView?.sprite
-        node?.run(moveAction!, withKey: moveActionKey)
+        if canMove {
+            let node = self.pView?.sprite
+            node?.run(moveAction!, withKey: moveActionKey)
+        }
     }
     func rotatePlayer(_ direction: MovementDirection) {
-        setDirection(direction)
-        self.pView?.sprite?.removeAction(forKey: moveActionKey)
-        self.moveAction = SKAction.move(by: directionToVector(self.direction), duration: 1.0 / speed)
-        self.moveAction = SKAction.repeatForever(moveAction!)
-        self.movePlayer()
+        if canMove {
+            setDirection(direction)
+            self.pView?.sprite?.removeAction(forKey: moveActionKey)
+            self.moveAction = SKAction.move(by: directionToVector(self.direction), duration: 1.0 / speed)
+            self.moveAction = SKAction.repeatForever(moveAction!)
+            self.movePlayer()
+        }
     }
     func pause() {
         self.pView?.sprite?.isPaused = true
@@ -64,6 +68,7 @@ class PlayerViewModel {
         self.resume()
         self.pView?.sprite?.removeAction(forKey: moveActionKey)
         self.pView!.hide()
+        canMove = false
     }
     func reset(_ position: CGPoint) {
         setPosition(position)

@@ -9,11 +9,17 @@ import Foundation
 import UIKit
 import SpriteKit
 import GameplayKit
+import SwiftUI
 
 class TimmerView {
-    var gameTimer: GameTimer?
+    @State var gameTimer: GameTimer
+    var labelNode: SKLabelNode?
     init(_ gameTimer: GameTimer, timmerLabel: SKLabelNode) {
         self.gameTimer = gameTimer
-        timmerLabel.text = String(format: "%.0f", gameTimer.getCronoTime())
+        self.labelNode = timmerLabel
+        timmerLabel.text = String(format: "%.0f", self.gameTimer.getCronoTime())
+    }
+    func update() {
+        labelNode?.text = String(format: "%.0f", gameTimer.getTimeRemaining())
     }
 }

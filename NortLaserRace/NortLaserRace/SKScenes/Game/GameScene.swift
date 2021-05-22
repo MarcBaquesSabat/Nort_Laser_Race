@@ -1,10 +1,12 @@
 import SpriteKit
 import GameplayKit
 import Foundation
+import SwiftUI
 
 class GameScene: SKScene {
     var matchManager: MatchManager?
     var swipeableView: UIView?
+
     override func didMove(to view: SKView) {
         initializeSwipe()
         matchManager = MatchManager(self)
@@ -16,7 +18,7 @@ class GameScene: SKScene {
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if !matchManager!.isMatchStarted() {
-            matchManager?.startMatch()
+            matchManager!.startMatch()
         }
     }
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -26,6 +28,7 @@ class GameScene: SKScene {
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
     }
     override func update(_ currentTime: TimeInterval) {
+        matchManager?.update()
     }
     func initBorderPhysics(_ border: String) {
         let nodeBorder = self.childNode(withName: "//\(border)") as? SKSpriteNode
