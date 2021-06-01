@@ -10,6 +10,7 @@
 		EF47E7672641C6CA0046EFAA /* PlayerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF47E7662641C6CA0046EFAA /* PlayerModel.swift */; };
 		EF4FCB7D26513844002AA76A /* TimmerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF4FCB7C26513844002AA76A /* TimmerView.swift */; };
 		EF4FCB80265138FF002AA76A /* GameTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF4FCB7F265138FF002AA76A /* GameTimer.swift */; };
+		EF600BAF2666A2A70079BE68 /* SaveManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF600BAE2666A2A70079BE68 /* SaveManager.swift */; };
 		EF656270263B1D7B00C4DE6B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF65626F263B1D7B00C4DE6B /* AppDelegate.swift */; };
 		EF656272263B1D7B00C4DE6B /* GarageScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = EF656271263B1D7B00C4DE6B /* GarageScene.sks */; };
 		EF656276263B1D7B00C4DE6B /* GarageScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF656275263B1D7B00C4DE6B /* GarageScene.swift */; };
@@ -36,6 +37,7 @@
 		EF47E7662641C6CA0046EFAA /* PlayerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerModel.swift; sourceTree = "<group>"; };
 		EF4FCB7C26513844002AA76A /* TimmerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimmerView.swift; sourceTree = "<group>"; };
 		EF4FCB7F265138FF002AA76A /* GameTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTimer.swift; sourceTree = "<group>"; };
+		EF600BAE2666A2A70079BE68 /* SaveManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveManager.swift; sourceTree = "<group>"; };
 		EF65626C263B1D7B00C4DE6B /* NortLaserRace.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NortLaserRace.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF65626F263B1D7B00C4DE6B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EF656271263B1D7B00C4DE6B /* GarageScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GarageScene.sks; sourceTree = "<group>"; };
@@ -178,6 +180,7 @@
 				EFA5D88D2650240000752B13 /* CollisionsManager.swift */,
 				EFC9A8A42656D75600B98F63 /* IAPManager.swift */,
 				EF71DE9F265977A1006C9F7A /* LineRenderer.swift */,
+				EF600BAE2666A2A70079BE68 /* SaveManager.swift */,
 			);
 			path = Systems;
 			sourceTree = "<group>";
@@ -303,6 +306,7 @@
 				EFA5D881264FE9B600752B13 /* MatchManager.swift in Sources */,
 				EF71DEA4265982DC006C9F7A /* Extensions.swift in Sources */,
 				EF656291263B258500C4DE6B /* GameScene.swift in Sources */,
+				EF600BAF2666A2A70079BE68 /* SaveManager.swift in Sources */,
 				EF656270263B1D7B00C4DE6B /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

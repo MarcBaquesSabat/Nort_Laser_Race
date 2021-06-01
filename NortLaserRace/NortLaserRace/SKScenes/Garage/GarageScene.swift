@@ -9,6 +9,7 @@ import SpriteKit
 import GameplayKit
 
 class GarageScene: SKScene {
+    let userDefaults: UserDefaults = UserDefaults.standard
     override func didMove(to view: SKView) {
         let parent = self.childNode(withName: "//Bg") as? SKSpriteNode
         let bgParticles1 = SKEmitterNode(fileNamed: "LaserLines")
@@ -20,6 +21,16 @@ class GarageScene: SKScene {
         bgParticles2?.zRotation = CGFloat(0.436)
         bgParticles2?.advanceSimulationTime(10)
         parent?.addChild(bgParticles2!)
+        let haveScore = userDefaults.object(forKey: SaveManager.getPlayerScoreKey())
+        if haveScore == nil {
+            print("No score saved")
+        } else {
+            if let score = haveScore as? Int, score != nil {
+                print("Score as int: \(score)")
+            }
+            
+        }
+        
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch in touches {

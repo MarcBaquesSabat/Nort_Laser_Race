@@ -93,6 +93,9 @@ class PlayerViewModel {
         self.pView?.sprite.isPaused = false
         self.pView?.show()
     }
+    func getScore() -> Int {
+        return self.pModel?.score ?? 0;
+    }
     func addScore(score: Int) {
         guard let model = self.pModel else {return}
         model.score += score

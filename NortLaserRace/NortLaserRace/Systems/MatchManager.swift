@@ -37,8 +37,12 @@ class MatchManager {
     var startLabel: SKLabelNode?
     // State
     var matchState: MatchState = .toStart
+    var standard: UserDefaults = UserDefaults.standard
+    //Scene context
+    let scene: SKScene?
     // INIT
     init(_ scene: SKScene) {
+        self.scene = scene
         self.player = PlayerViewModel(PlayerModel(),
                                       PlayerView("Player_1", "bluePlayer", scene, CGPoint(x: 400, y: 0)),
                                       MovementDirection.movementLeft,
@@ -107,7 +111,18 @@ class MatchManager {
                 // Timmer ends
                 // Players with no life
             // Change scene with winner and scores
+            let pointsP1 = player!.getScore()
+            let pointsIA = IAPlayer!.getScore()
+            print("Points p1: \(pointsP1)")
+            print("Points IA: \(pointsIA)")
+            
+            standard.setValue(pointsP1, forKey: SaveManager.getPlayerScoreKey())
+            standard.setValue(pointsIA, forKey: SaveManager.getIAScoreKey())
+            standard.setValue(player!.getScore(), forKey: SaveManager.getPlayerScoreKey())
             print("End Match")
+            guard let sceneToLoad = SKScene(fileNamed: "GarageScene") else { return }
+            sceneToLoad.scaleMode = .aspectFit
+            self.scene!.view!.presentScene(sceneToLoad, transition: SKTransition.doorsCloseHorizontal(withDuration: 1))
         }
     }
     func collisionDetected(colisionEvent: ColisionEvent) {
