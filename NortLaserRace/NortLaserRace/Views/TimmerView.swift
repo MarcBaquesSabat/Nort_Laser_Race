@@ -20,6 +20,9 @@ class TimmerView {
         timmerLabel.text = String(format: "%.0f", self.gameTimer.getCronoTime())
     }
     func update() {
-        labelNode?.text = String(format: "%.0f", gameTimer.getTimeRemaining())
+        let time = gameTimer.getTimeRemaining()
+        let minutes = Int(time / 60)
+        let seconds = Int(time) - minutes * 60
+        labelNode?.text = "\(minutes) : \(seconds)"
     }
 }

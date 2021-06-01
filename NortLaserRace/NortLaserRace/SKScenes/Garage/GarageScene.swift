@@ -10,6 +10,16 @@ import GameplayKit
 
 class GarageScene: SKScene {
     override func didMove(to view: SKView) {
+        let parent = self.childNode(withName: "//Bg") as? SKSpriteNode
+        let bgParticles1 = SKEmitterNode(fileNamed: "LaserLines")
+        bgParticles1?.position = CGPoint(x: 0, y: 550)
+        bgParticles1?.advanceSimulationTime(10)
+        parent?.addChild(bgParticles1!)
+        let bgParticles2 = SKEmitterNode(fileNamed: "LaserLines")
+        bgParticles2?.position = CGPoint(x: -200, y: 550)
+        bgParticles2?.zRotation = CGFloat(0.436)
+        bgParticles2?.advanceSimulationTime(10)
+        parent?.addChild(bgParticles2!)
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch in touches {

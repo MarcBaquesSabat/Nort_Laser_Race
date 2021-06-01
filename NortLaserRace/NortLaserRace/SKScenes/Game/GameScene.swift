@@ -1,20 +1,20 @@
 import SpriteKit
 import GameplayKit
 import Foundation
-import SwiftUI
 
 class GameScene: SKScene {
     var matchManager: MatchManager?
     var swipeableView: UIView?
-
     override func didMove(to view: SKView) {
         initializeSwipe()
         matchManager = MatchManager(self)
+        // Physics
         initBorderPhysics("Border1")
         initBorderPhysics("Border2")
         initBorderPhysics("Border3")
         initBorderPhysics("Border4")
         self.physicsWorld.contactDelegate = self
+        self.view!.showsPhysics = true
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if !matchManager!.isMatchStarted() {
@@ -28,7 +28,7 @@ class GameScene: SKScene {
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
     }
     override func update(_ currentTime: TimeInterval) {
-        matchManager?.update()
+        matchManager?.update(scene: self)
     }
     func initBorderPhysics(_ border: String) {
         let nodeBorder = self.childNode(withName: "//\(border)") as? SKSpriteNode
@@ -38,7 +38,7 @@ class GameScene: SKScene {
         physicsBody.affectedByGravity = false
         physicsBody.categoryBitMask = CollisionManager.getObstacleCategory()
         physicsBody.collisionBitMask = CollisionManager.getNullMask()
-        physicsBody.contactTestBitMask = CollisionManager.getNullMask()
+        physicsBody.contactTestBitMask = CollisionManager.getObstacleContact()
     }
     @objc private func didSwipe(_ sender: UISwipeGestureRecognizer) {
         matchManager?.player?.rotatePlayer(swipeDirectionToPlayerDirection(sender.direction))

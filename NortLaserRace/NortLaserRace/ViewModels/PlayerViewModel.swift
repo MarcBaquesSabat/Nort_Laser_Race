@@ -20,22 +20,39 @@ class PlayerViewModel {
     private let moveActionKey: String = "moveActionKey"
     private var pView: PlayerView?
     private var pModel: PlayerModel?
-    private var speed: Double = 200
+    private var speed: Double = 300
     private var direction: MovementDirection = .movementRight
+    private let lineMargin: CGFloat = 2.0
+    var lineManager: LimitedPathRenderer
     var canMove: Bool = false
-    init(_ playerModel: PlayerModel, _ playerView: PlayerView, _ direction: MovementDirection) {
+    init(_ playerModel: PlayerModel, _ playerView: PlayerView, _ direction: MovementDirection, color: SKColor,
+         physicsContact: UInt32, physicsCategory: UInt32) {
         self.pView = playerView
         self.pModel = playerModel
+        var player = 0
+        if color == .red {
+            player = 1
+        }
+        self.lineManager = LimitedPathRenderer(physicsCategory: physicsCategory, physicsContact: physicsContact, player: player)
+        self.lineManager.addPoint(point: getPosition())
+        self.lineManager.setColor(lineColor: color)
         setDirection(direction)
         moveAction = SKAction.move(by: directionToVector(self.direction), duration: 1.0 / speed)
         moveAction = SKAction.repeatForever(moveAction!)
+    }
+    func update(scene: SKScene) {
+        self.lineManager.addPoint(point: getPosition())
+        self.lineManager.update(scene: scene)
     }
     func setDirection(_ direction: MovementDirection) {
         self.direction = direction
     }
     func setPosition(_ newPosition: CGPoint) {
-        self.pView?.sprite?.removeAction(forKey: moveActionKey)
+        self.pView?.sprite.removeAction(forKey: moveActionKey)
         self.pView?.updatePosition(newPosition)
+    }
+    func getPosition() -> CGPoint {
+        return (self.pView?.getPosition())!
     }
     func setSpeed(_ speed: Double) {
         self.speed = speed
@@ -49,30 +66,31 @@ class PlayerViewModel {
     func rotatePlayer(_ direction: MovementDirection) {
         if canMove {
             setDirection(direction)
-            self.pView?.sprite?.removeAction(forKey: moveActionKey)
+            self.pView?.sprite.removeAction(forKey: moveActionKey)
             self.moveAction = SKAction.move(by: directionToVector(self.direction), duration: 1.0 / speed)
             self.moveAction = SKAction.repeatForever(moveAction!)
             self.movePlayer()
+            self.lineManager.addPoint(point: getPosition())
         }
     }
     func pause() {
-        self.pView?.sprite?.isPaused = true
+        self.pView?.sprite.isPaused = true
     }
     func resume() {
-        self.pView?.sprite?.isPaused = false
+        self.pView?.sprite.isPaused = false
     }
     func isPaused() -> Bool {
-        return self.pView!.sprite!.isPaused
+        return self.pView!.sprite.isPaused
     }
     func dead() {
         self.resume()
-        self.pView?.sprite?.removeAction(forKey: moveActionKey)
+        self.pView?.sprite.removeAction(forKey: moveActionKey)
         self.pView!.hide()
         canMove = false
     }
     func reset(_ position: CGPoint) {
         setPosition(position)
-        self.pView?.sprite?.isPaused = false
+        self.pView?.sprite.isPaused = false
         self.pView?.show()
     }
     func addScore(score: Int) {

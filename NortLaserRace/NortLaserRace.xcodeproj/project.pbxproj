@@ -18,6 +18,10 @@
 		EF65627D263B1D7C00C4DE6B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF65627C263B1D7C00C4DE6B /* Assets.xcassets */; };
 		EF656291263B258500C4DE6B /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF656290263B258500C4DE6B /* GameScene.swift */; };
 		EF656295263B25BD00C4DE6B /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = EF656294263B25BD00C4DE6B /* GameScene.sks */; };
+		EF71DE9C26595142006C9F7A /* LaserLines.sks in Resources */ = {isa = PBXBuildFile; fileRef = EF71DE9A26595142006C9F7A /* LaserLines.sks */; };
+		EF71DE9D26595142006C9F7A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF71DE9B26595142006C9F7A /* Assets.xcassets */; };
+		EF71DEA0265977A1006C9F7A /* LineRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF71DE9F265977A1006C9F7A /* LineRenderer.swift */; };
+		EF71DEA4265982DC006C9F7A /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF71DEA3265982DC006C9F7A /* Extensions.swift */; };
 		EFA5D87A264FE8CC00752B13 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFA5D879264FE8CC00752B13 /* PlayerView.swift */; };
 		EFA5D87D264FE96B00752B13 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFA5D87C264FE96B00752B13 /* UserModel.swift */; };
 		EFA5D881264FE9B600752B13 /* MatchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFA5D880264FE9B600752B13 /* MatchManager.swift */; };
@@ -42,6 +46,10 @@
 		EF65627E263B1D7C00C4DE6B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EF656290263B258500C4DE6B /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		EF656294263B25BD00C4DE6B /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
+		EF71DE9A26595142006C9F7A /* LaserLines.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = LaserLines.sks; sourceTree = "<group>"; };
+		EF71DE9B26595142006C9F7A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		EF71DE9F265977A1006C9F7A /* LineRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineRenderer.swift; sourceTree = "<group>"; };
+		EF71DEA3265982DC006C9F7A /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		EFA5D879264FE8CC00752B13 /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
 		EFA5D87C264FE96B00752B13 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		EFA5D880264FE9B600752B13 /* MatchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchManager.swift; sourceTree = "<group>"; };
@@ -83,6 +91,8 @@
 		EF65626E263B1D7B00C4DE6B /* NortLaserRace */ = {
 			isa = PBXGroup;
 			children = (
+				EF71DEA2265982C7006C9F7A /* Extensions */,
+				EF71DE9926595129006C9F7A /* Particles */,
 				EFA5D884264FEA6100752B13 /* ViewModels */,
 				EFA5D87F264FE98C00752B13 /* Systems */,
 				EF65628B263B23B600C4DE6B /* SKScenes */,
@@ -144,12 +154,30 @@
 			path = Game;
 			sourceTree = "<group>";
 		};
+		EF71DE9926595129006C9F7A /* Particles */ = {
+			isa = PBXGroup;
+			children = (
+				EF71DE9A26595142006C9F7A /* LaserLines.sks */,
+				EF71DE9B26595142006C9F7A /* Assets.xcassets */,
+			);
+			path = Particles;
+			sourceTree = "<group>";
+		};
+		EF71DEA2265982C7006C9F7A /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				EF71DEA3265982DC006C9F7A /* Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		EFA5D87F264FE98C00752B13 /* Systems */ = {
 			isa = PBXGroup;
 			children = (
 				EFA5D880264FE9B600752B13 /* MatchManager.swift */,
 				EFA5D88D2650240000752B13 /* CollisionsManager.swift */,
 				EFC9A8A42656D75600B98F63 /* IAPManager.swift */,
+				EF71DE9F265977A1006C9F7A /* LineRenderer.swift */,
 			);
 			path = Systems;
 			sourceTree = "<group>";
@@ -226,6 +254,8 @@
 				EF656295263B25BD00C4DE6B /* GameScene.sks in Resources */,
 				EF656272263B1D7B00C4DE6B /* GarageScene.sks in Resources */,
 				EF65627D263B1D7C00C4DE6B /* Assets.xcassets in Resources */,
+				EF71DE9D26595142006C9F7A /* Assets.xcassets in Resources */,
+				EF71DE9C26595142006C9F7A /* LaserLines.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -269,7 +299,9 @@
 				EFC9A8A92656DF7100B98F63 /* PlayerMovement.swift in Sources */,
 				EFA5D87A264FE8CC00752B13 /* PlayerView.swift in Sources */,
 				EF4FCB7D26513844002AA76A /* TimmerView.swift in Sources */,
+				EF71DEA0265977A1006C9F7A /* LineRenderer.swift in Sources */,
 				EFA5D881264FE9B600752B13 /* MatchManager.swift in Sources */,
+				EF71DEA4265982DC006C9F7A /* Extensions.swift in Sources */,
 				EF656291263B258500C4DE6B /* GameScene.swift in Sources */,
 				EF656270263B1D7B00C4DE6B /* AppDelegate.swift in Sources */,
 			);

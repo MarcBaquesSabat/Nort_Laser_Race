@@ -25,7 +25,7 @@ enum MatchState {
 class MatchManager {
     // Configuration
     let preparationTime = 3.0
-    let matchTime = 180.0
+    let matchTime = 5.0
     // Players
     var player: PlayerViewModel?
     var IAPlayer: PlayerViewModel?
@@ -33,18 +33,24 @@ class MatchManager {
     var matchGameTimer: GameTimer?
     var preparationGameTimer: GameTimer?
     var matchTimmerView: TimmerView?
-    //Others nodes
+    // Others nodes
     var startLabel: SKLabelNode?
     // State
     var matchState: MatchState = .toStart
     // INIT
     init(_ scene: SKScene) {
         self.player = PlayerViewModel(PlayerModel(),
-                                      PlayerView("Player_1", "Player01", scene, CGPoint(x: 400, y: 0)),
-                                      MovementDirection.movementLeft)
+                                      PlayerView("Player_1", "bluePlayer", scene, CGPoint(x: 400, y: 0)),
+                                      MovementDirection.movementLeft,
+                                      color: .blue,
+                                      physicsContact: CollisionManager.getPlayerContact(),
+                                      physicsCategory: CollisionManager.getPlayerCategory())
         self.IAPlayer = PlayerViewModel(PlayerModel(),
-                                        PlayerView("IA", "Player01", scene, CGPoint(x: -200, y: 0)),
-                                        MovementDirection.movementRight)
+                                        PlayerView("IA", "redPlayer", scene, CGPoint(x: -200, y: 0)),
+                                        MovementDirection.movementRight,
+                                        color: .red,
+                                        physicsContact: CollisionManager.getIAContact(),
+                                        physicsCategory: CollisionManager.getIACategory())
         positionPlayers()
         matchGameTimer = GameTimer(matchTime, function: endMatch)
         preparationGameTimer = GameTimer(preparationTime, function: startRound)
@@ -54,8 +60,10 @@ class MatchManager {
         }
         self.startLabel = scene.childNode(withName: "//StartLabel") as? SKLabelNode
     }
-    func update() {
+    func update(scene: SKScene) {
         self.matchTimmerView?.update()
+        player?.update(scene: scene)
+        IAPlayer?.update(scene: scene)
     }
     func isMatchStarted() -> Bool {
         return matchState != .toStart
@@ -70,9 +78,11 @@ class MatchManager {
         if matchState == .toStart || matchState == .waitingRound {
             print("Start round")
             player?.canMove = true
+            player?.lineManager.start()
             player?.movePlayer()
             IAPlayer?.canMove = true
             IAPlayer?.movePlayer()
+            IAPlayer?.lineManager.start()
             matchState = .round
         }
     }
@@ -81,8 +91,10 @@ class MatchManager {
             print("End round")
             matchState = .waitingRound
             positionPlayers()
+            IAPlayer?.lineManager.reset()
             IAPlayer?.canMove = false
             player?.canMove = false
+            player?.lineManager.reset()
             preparationGameTimer?.start()
         }
     }
@@ -105,19 +117,15 @@ class MatchManager {
             case .IABorder:
                 IAPlayer.addScore(score: -50)
                 IAPlayer.loseLife()
-                break
             case .playerBorder:
                 player.addScore(score: -50)
                 player.loseLife()
-                break
             case .IAKillPlayer:
                 IAPlayer.addScore(score: 100)
                 player.loseLife()
-                break
             case .playerKillIA:
                 player.addScore(score: 100)
                 IAPlayer.loseLife()
-                break
             }
             if player.isDead() || IAPlayer.isDead() {
                 endMatch()
