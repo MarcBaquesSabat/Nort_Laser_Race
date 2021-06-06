@@ -25,7 +25,7 @@ enum MatchState {
 class MatchManager {
     // Configuration
     let preparationTime = 3.0
-    let matchTime = 5.0
+    let matchTime = 15.0
     // Players
     var player: PlayerViewModel?
     var IAPlayer: PlayerViewModel?
@@ -39,25 +39,30 @@ class MatchManager {
     // State
     var matchState: MatchState = .toStart
     var standard: UserDefaults = UserDefaults.standard
-    //Scene context
+    // Scene context
     let scene: SKScene?
+    // HUD view
+    let hudView: HUDView
     // INIT
     init(_ scene: SKScene) {
         self.scene = scene
         self.endHandlerNode = scene.childNode(withName: "//EndHandler")! 
         self.endHandlerNode.isHidden = true
-        self.player = PlayerViewModel(PlayerModel(),
+        let playerModel = PlayerModel()
+        let iaModel = PlayerModel()
+        self.player = PlayerViewModel(playerModel,
                                       PlayerView("Player_1", "bluePlayer", scene, CGPoint(x: 400, y: 0)),
                                       MovementDirection.movementLeft,
                                       color: .blue,
                                       physicsContact: CollisionManager.getPlayerContact(),
                                       physicsCategory: CollisionManager.getPlayerCategory())
-        self.IAPlayer = PlayerViewModel(PlayerModel(),
+        self.IAPlayer = PlayerViewModel(iaModel,
                                         PlayerView("IA", "redPlayer", scene, CGPoint(x: -200, y: 0)),
                                         MovementDirection.movementRight,
                                         color: .red,
                                         physicsContact: CollisionManager.getIAContact(),
                                         physicsCategory: CollisionManager.getIACategory())
+        self.hudView = HUDView(scene: scene, playerModel: playerModel, IAModel: iaModel)
         positionPlayers()
         matchGameTimer = GameTimer(matchTime, function: endMatch)
         preparationGameTimer = GameTimer(preparationTime, function: startRound)
@@ -71,6 +76,7 @@ class MatchManager {
         self.matchTimmerView?.update()
         player?.update(scene: scene)
         IAPlayer?.update(scene: scene)
+        self.hudView.update()
     }
     func isMatchStarted() -> Bool {
         return matchState != .toStart
@@ -108,22 +114,11 @@ class MatchManager {
     func endMatch() {
         if matchState != .end {
             matchState = .end
+            player?.lineManager.reset()
+            IAPlayer?.lineManager.reset()
             positionPlayers()
             matchGameTimer?.end()
-            // Can be called when:
-                // Timmer ends
-                // Players with no life
-            // Change scene with winner and scores
-            let pointsP1 = player!.getScore()
-            let pointsIA = IAPlayer!.getScore()
-            print("Points p1: \(pointsP1)")
-            print("Points IA: \(pointsIA)")
-            
-            standard.setValue(pointsP1, forKey: SaveManager.getPlayerScoreKey())
-            standard.setValue(pointsIA, forKey: SaveManager.getIAScoreKey())
-            standard.setValue(player!.getScore(), forKey: SaveManager.getPlayerScoreKey())
-            print("End Match")
-            self.endHandlerNode.isHidden = false
+            setWinnerEnding()
         }
     }
     func collisionDetected(colisionEvent: ColisionEvent) {
@@ -132,16 +127,22 @@ class MatchManager {
             switch colisionEvent {
             case .IABorder:
                 IAPlayer.addScore(score: -50)
+                player.addScore(score: 25)
                 IAPlayer.loseLife()
+                self.hudView.updateIAHealthView()
             case .playerBorder:
                 player.addScore(score: -50)
+                IAPlayer.addScore(score: 25)
                 player.loseLife()
+                self.hudView.updatePlayerHealthView()
             case .IAKillPlayer:
                 IAPlayer.addScore(score: 100)
                 player.loseLife()
+                self.hudView.updatePlayerHealthView()
             case .playerKillIA:
                 player.addScore(score: 100)
                 IAPlayer.loseLife()
+                self.hudView.updateIAHealthView()
             }
             if player.isDead() || IAPlayer.isDead() {
                 endMatch()
@@ -153,5 +154,25 @@ class MatchManager {
     private func positionPlayers() {
         player?.setPosition(CGPoint(x: 400, y: 0))
         IAPlayer?.setPosition(CGPoint(x: -200, y: 0))
+    }
+    private func setWinnerEnding() {
+        self.endHandlerNode.isHidden = false
+        let pointsP1 = player!.getScore()
+        let pointsIA = IAPlayer!.getScore()
+        let winnerLabelNode = self.scene?.childNode(withName: "//WinnerLabel")! as? SKLabelNode
+        let scoreLabelNode = self.scene?.childNode(withName: "//ScoreLabel")! as? SKLabelNode
+        print("Points p1: \(pointsP1)")
+        print("Points IA: \(pointsIA)")
+        if pointsIA > pointsP1 {
+            winnerLabelNode?.text = "IA Wins"
+            scoreLabelNode?.text = "\(pointsIA)"
+        } else if pointsIA == pointsP1 {
+            winnerLabelNode?.text = "Draw"
+            scoreLabelNode?.text = "\(pointsP1)/\(pointsIA)"
+        } else {
+            winnerLabelNode?.text = "\(self.player!.getName()) wins"
+            scoreLabelNode?.text = "\(pointsP1)"
+        }
+        standard.setValue(pointsP1, forKey: SaveManager.getPlayerScoreKey())
     }
 }

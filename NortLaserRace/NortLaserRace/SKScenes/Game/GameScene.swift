@@ -14,19 +14,16 @@ class GameScene: SKScene {
         initBorderPhysics("Border3")
         initBorderPhysics("Border4")
         self.physicsWorld.contactDelegate = self
-        self.view!.showsPhysics = true
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if !matchManager!.isMatchStarted() {
             matchManager!.startMatch()
         }
-        for touch in touches {
-            if matchManager!.matchState == .end {
-                guard let sceneToLoad = SKScene(fileNamed: "GarageScene") else { return }
-                sceneToLoad.scaleMode = .aspectFit
-                self.scene!.view!.presentScene(sceneToLoad, transition: SKTransition.doorsCloseHorizontal(withDuration: 1))
-          }
-        }
+        if matchManager!.matchState == .end {
+            guard let sceneToLoad = SKScene(fileNamed: "GarageScene") else { return }
+            sceneToLoad.scaleMode = .aspectFit
+            self.scene!.view!.presentScene(sceneToLoad, transition: SKTransition.doorsCloseHorizontal(withDuration: 1))
+      }
     }
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
     }

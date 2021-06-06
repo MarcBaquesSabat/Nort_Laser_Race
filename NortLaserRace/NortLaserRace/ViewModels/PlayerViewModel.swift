@@ -114,6 +114,9 @@ class PlayerViewModel {
         guard let model = self.pModel else { return false }
         return model.lives <= 0
     }
+    func getName() -> String {
+        return pModel?.name ?? "Unnamed"
+    }
     private func directionToVector(_ direction: MovementDirection) -> CGVector {
         switch direction {
         case .movementUp:

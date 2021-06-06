@@ -27,6 +27,8 @@ class GarageScene: SKScene {
         } else {
             if let score = haveScore as? Int {
                 print("Score as int: \(score)")
+                let scoreNode = self.childNode(withName: "//ScoreLabel") as? SKLabelNode
+                scoreNode?.text = "Last score: \(score)"
             }
         }
     }
