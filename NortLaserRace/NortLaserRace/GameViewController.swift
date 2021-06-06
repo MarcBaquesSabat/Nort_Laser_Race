@@ -10,7 +10,7 @@ import SpriteKit
 import GameplayKit
 
 class GameViewController: UIViewController {
-
+    static let iapManager: IAPManager = IAPManager()
     override func viewDidLoad() {
         super.viewDidLoad()
         if let view = self.view as? SKView?, view != nil {

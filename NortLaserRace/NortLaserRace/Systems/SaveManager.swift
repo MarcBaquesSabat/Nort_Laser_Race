@@ -14,4 +14,7 @@ class SaveManager {
     static func getIAScoreKey() -> String {
         return "PlayerScore"
     }
+    static func getSkinsCollectionKey() -> String {
+        return "Skins"
+    }
 }

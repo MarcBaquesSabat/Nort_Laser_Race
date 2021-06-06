@@ -41,6 +41,11 @@ class GarageScene: SKScene {
                 sceneToLoad.scaleMode = .aspectFit
                 self.scene!.view!.presentScene(sceneToLoad, transition: SKTransition.doorsCloseHorizontal(withDuration: 1))
               }
+            if touchedNode.name == "MechanicsButton" {
+              guard let sceneToLoad = SKScene(fileNamed: "ShopScene") else { return }
+              sceneToLoad.scaleMode = .aspectFit
+              self.scene!.view!.presentScene(sceneToLoad, transition: SKTransition.doorsCloseHorizontal(withDuration: 1))
+            }
         }
     }
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {

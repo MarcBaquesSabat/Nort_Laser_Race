@@ -32,6 +32,8 @@
 		EFC9A8A52656D75600B98F63 /* IAPManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFC9A8A42656D75600B98F63 /* IAPManager.swift */; };
 		EFC9A8A92656DF7100B98F63 /* PlayerMovement.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFC9A8A82656DF7100B98F63 /* PlayerMovement.swift */; };
 		EFE4248D266D0A0900CCE86F /* HUDView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE4248C266D0A0900CCE86F /* HUDView.swift */; };
+		EFE42490266D3D7D00CCE86F /* ShopScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE4248F266D3D7D00CCE86F /* ShopScene.swift */; };
+		EFE42492266D3D8E00CCE86F /* ShopScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = EFE42491266D3D8E00CCE86F /* ShopScene.sks */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,6 +65,8 @@
 		EFC9A8A42656D75600B98F63 /* IAPManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPManager.swift; sourceTree = "<group>"; };
 		EFC9A8A82656DF7100B98F63 /* PlayerMovement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerMovement.swift; sourceTree = "<group>"; };
 		EFE4248C266D0A0900CCE86F /* HUDView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HUDView.swift; sourceTree = "<group>"; };
+		EFE4248F266D3D7D00CCE86F /* ShopScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopScene.swift; sourceTree = "<group>"; };
+		EFE42491266D3D8E00CCE86F /* ShopScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = ShopScene.sks; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +138,7 @@
 		EF65628B263B23B600C4DE6B /* SKScenes */ = {
 			isa = PBXGroup;
 			children = (
+				EFE4248E266D3D6700CCE86F /* Shop */,
 				EF65628F263B257300C4DE6B /* Game */,
 				EF65628C263B23CA00C4DE6B /* Garage */,
 			);
@@ -198,6 +203,15 @@
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
+		EFE4248E266D3D6700CCE86F /* Shop */ = {
+			isa = PBXGroup;
+			children = (
+				EFE4248F266D3D7D00CCE86F /* ShopScene.swift */,
+				EFE42491266D3D8E00CCE86F /* ShopScene.sks */,
+			);
+			path = Shop;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -257,6 +271,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EF65627B263B1D7B00C4DE6B /* Main.storyboard in Resources */,
+				EFE42492266D3D8E00CCE86F /* ShopScene.sks in Resources */,
 				EF656295263B25BD00C4DE6B /* GameScene.sks in Resources */,
 				EF656272263B1D7B00C4DE6B /* GarageScene.sks in Resources */,
 				EF65627D263B1D7C00C4DE6B /* Assets.xcassets in Resources */,
@@ -311,6 +326,7 @@
 				EF656291263B258500C4DE6B /* GameScene.swift in Sources */,
 				EF600BAF2666A2A70079BE68 /* SaveManager.swift in Sources */,
 				EF656270263B1D7B00C4DE6B /* AppDelegate.swift in Sources */,
+				EFE42490266D3D7D00CCE86F /* ShopScene.swift in Sources */,
 				EFE4248D266D0A0900CCE86F /* HUDView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -1,20 +1,9 @@
 {
+  "identifier" : "48C2CF53",
+  "nonRenewingSubscriptions" : [
+
+  ],
   "products" : [
-    {
-      "displayPrice" : "0.99",
-      "familyShareable" : false,
-      "internalID" : "DE127871",
-      "localizations" : [
-        {
-          "description" : "",
-          "displayName" : "",
-          "locale" : "en_US"
-        }
-      ],
-      "productID" : "com.blackrefactory.NortLaserRace.Avatar01",
-      "referenceName" : "Avatar 01",
-      "type" : "Consumable"
-    },
     {
       "displayPrice" : "1.99",
       "familyShareable" : false,
@@ -26,8 +15,38 @@
           "locale" : "en_US"
         }
       ],
-      "productID" : "com.blackrefactory.NortLaserRace.Avatar02",
-      "referenceName" : "Avatar 02",
+      "productID" : "com.blackrefactory.NortLaserRace.Avatar_B1_Tentacle",
+      "referenceName" : "Avatar_B1_Tentacle",
+      "type" : "NonConsumable"
+    },
+    {
+      "displayPrice" : "0.99",
+      "familyShareable" : false,
+      "internalID" : "0F4A9C21",
+      "localizations" : [
+        {
+          "description" : "",
+          "displayName" : "",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "com.blackrefactory.NortLaserRace.Avatar_B1_Metroid",
+      "referenceName" : "Avatar_B1_Metroid",
+      "type" : "NonConsumable"
+    },
+    {
+      "displayPrice" : "0.99",
+      "familyShareable" : false,
+      "internalID" : "DB3166A6",
+      "localizations" : [
+        {
+          "description" : "",
+          "displayName" : "",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "com.blackrefactory.NortLaserRace.Avatar_B1_Suspicious",
+      "referenceName" : "Avatar_B1_Suspicious",
       "type" : "NonConsumable"
     }
   ],
@@ -39,6 +58,6 @@
   ],
   "version" : {
     "major" : 1,
-    "minor" : 0
+    "minor" : 1
   }
 }
