@@ -25,12 +25,10 @@ class GarageScene: SKScene {
         if haveScore == nil {
             print("No score saved")
         } else {
-            if let score = haveScore as? Int, score != nil {
+            if let score = haveScore as? Int {
                 print("Score as int: \(score)")
             }
-            
         }
-        
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch in touches {

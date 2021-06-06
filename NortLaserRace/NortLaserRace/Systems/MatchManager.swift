@@ -35,6 +35,7 @@ class MatchManager {
     var matchTimmerView: TimmerView?
     // Others nodes
     var startLabel: SKLabelNode?
+    var endHandlerNode: SKNode
     // State
     var matchState: MatchState = .toStart
     var standard: UserDefaults = UserDefaults.standard
@@ -43,6 +44,8 @@ class MatchManager {
     // INIT
     init(_ scene: SKScene) {
         self.scene = scene
+        self.endHandlerNode = scene.childNode(withName: "//EndHandler")! 
+        self.endHandlerNode.isHidden = true
         self.player = PlayerViewModel(PlayerModel(),
                                       PlayerView("Player_1", "bluePlayer", scene, CGPoint(x: 400, y: 0)),
                                       MovementDirection.movementLeft,
@@ -120,9 +123,7 @@ class MatchManager {
             standard.setValue(pointsIA, forKey: SaveManager.getIAScoreKey())
             standard.setValue(player!.getScore(), forKey: SaveManager.getPlayerScoreKey())
             print("End Match")
-            guard let sceneToLoad = SKScene(fileNamed: "GarageScene") else { return }
-            sceneToLoad.scaleMode = .aspectFit
-            self.scene!.view!.presentScene(sceneToLoad, transition: SKTransition.doorsCloseHorizontal(withDuration: 1))
+            self.endHandlerNode.isHidden = false
         }
     }
     func collisionDetected(colisionEvent: ColisionEvent) {
