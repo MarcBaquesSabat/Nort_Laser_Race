@@ -31,6 +31,10 @@ class GarageScene: SKScene {
                 scoreNode?.text = "Last score: \(score)"
             }
         }
+        let avatarNode = self.childNode(withName: "//UserAvatarSprite") as? SKSpriteNode
+        var skinID = Avatars.defaultAvatar.rawValue
+        skinID = userDefaults.integer(forKey: SaveManager.getActualSkinKey())
+        avatarNode?.texture = AvatarRepository.getAvatarTexture(skinID: skinID)
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch in touches {

@@ -9,4 +9,5 @@ import Foundation
 
 class UserModel {
     var userName: String = "Guest"
+    var avatar: Int = Avatars.defaultAvatar.rawValue
 }

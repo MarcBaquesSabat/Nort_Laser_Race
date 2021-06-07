@@ -27,7 +27,7 @@ public class IAPManager: NSObject, SKPaymentTransactionObserver {
         if localSkins == nil { return }
         for (key, value) in localSkins! {
             if catalogDictionary[key] != nil {
-                if (value as? Bool)!{
+                if (value as? Bool)! {
                     catalogDictionary[key]! = true
                 }
             }
@@ -50,7 +50,7 @@ public class IAPManager: NSObject, SKPaymentTransactionObserver {
             if transaction.transactionState == .purchased {
                 print("Purchased succed")
                 print(transaction.payment.productIdentifier)
-                catalogDictionary.forEach({ (key, value) in
+                catalogDictionary.forEach({ (key, _) in
                     if key == transaction.payment.productIdentifier {
                         catalogDictionary[key] = true
                         print("\(key) is unlocked")

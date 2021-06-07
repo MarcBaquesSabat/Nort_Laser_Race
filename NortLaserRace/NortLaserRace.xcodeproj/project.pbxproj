@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EF3B1FB4266EB8DD009382C9 /* AvatarRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3B1FB3266EB8DD009382C9 /* AvatarRepository.swift */; };
 		EF47E7672641C6CA0046EFAA /* PlayerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF47E7662641C6CA0046EFAA /* PlayerModel.swift */; };
 		EF4FCB7D26513844002AA76A /* TimmerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF4FCB7C26513844002AA76A /* TimmerView.swift */; };
 		EF4FCB80265138FF002AA76A /* GameTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF4FCB7F265138FF002AA76A /* GameTimer.swift */; };
@@ -37,6 +38,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EF3B1FB3266EB8DD009382C9 /* AvatarRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarRepository.swift; sourceTree = "<group>"; };
 		EF47E7662641C6CA0046EFAA /* PlayerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerModel.swift; sourceTree = "<group>"; };
 		EF4FCB7C26513844002AA76A /* TimmerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimmerView.swift; sourceTree = "<group>"; };
 		EF4FCB7F265138FF002AA76A /* GameTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTimer.swift; sourceTree = "<group>"; };
@@ -189,6 +191,7 @@
 				EFC9A8A42656D75600B98F63 /* IAPManager.swift */,
 				EF71DE9F265977A1006C9F7A /* LineRenderer.swift */,
 				EF600BAE2666A2A70079BE68 /* SaveManager.swift */,
+				EF3B1FB3266EB8DD009382C9 /* AvatarRepository.swift */,
 			);
 			path = Systems;
 			sourceTree = "<group>";
@@ -319,6 +322,7 @@
 				EF656278263B1D7B00C4DE6B /* GameViewController.swift in Sources */,
 				EFC9A8A92656DF7100B98F63 /* PlayerMovement.swift in Sources */,
 				EFA5D87A264FE8CC00752B13 /* PlayerView.swift in Sources */,
+				EF3B1FB4266EB8DD009382C9 /* AvatarRepository.swift in Sources */,
 				EF4FCB7D26513844002AA76A /* TimmerView.swift in Sources */,
 				EF71DEA0265977A1006C9F7A /* LineRenderer.swift in Sources */,
 				EFA5D881264FE9B600752B13 /* MatchManager.swift in Sources */,

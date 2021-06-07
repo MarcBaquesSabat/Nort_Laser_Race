@@ -11,6 +11,7 @@ import GameplayKit
 
 class GameViewController: UIViewController {
     static let iapManager: IAPManager = IAPManager()
+    static var user: UserModel = UserModel()
     override func viewDidLoad() {
         super.viewDidLoad()
         if let view = self.view as? SKView?, view != nil {

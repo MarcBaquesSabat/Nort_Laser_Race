@@ -17,4 +17,7 @@ class SaveManager {
     static func getSkinsCollectionKey() -> String {
         return "Skins"
     }
+    static func getActualSkinKey() -> String {
+        return "avatar"
+    }
 }
