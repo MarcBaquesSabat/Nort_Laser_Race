@@ -37,7 +37,8 @@ class HUDView {
         // Player Avatar
         let playerAvatar = self.scene.childNode(withName: "//P1AvatarSprite") as? SKSpriteNode
         let userDefaults = UserDefaults.standard
-        playerAvatar?.texture = AvatarRepository.getAvatarTexture(skinID: userDefaults.integer(forKey: SaveManager.getActualSkinKey()))
+        let skinID = userDefaults.integer(forKey: SaveManager.getActualSkinKey())
+        playerAvatar?.texture = AvatarRepository.getAvatarTexture(skinID: skinID )
     }
     func update() {
         self.playerScoreLabel.text = "\(self.playerModel.score)"

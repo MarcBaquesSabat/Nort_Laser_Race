@@ -28,7 +28,7 @@ class MatchManager {
     let matchTime = 15.0
     // Players
     var player: PlayerViewModel?
-    var IAPlayer: PlayerViewModel?
+    var IAPlayer: IAViewModel?
     // Timmers
     var matchGameTimer: GameTimer?
     var preparationGameTimer: GameTimer?
@@ -46,7 +46,7 @@ class MatchManager {
     // INIT
     init(_ scene: SKScene) {
         self.scene = scene
-        self.endHandlerNode = scene.childNode(withName: "//EndHandler")! 
+        self.endHandlerNode = scene.childNode(withName: "//EndHandler")!
         self.endHandlerNode.isHidden = true
         let playerModel = PlayerModel()
         let iaModel = PlayerModel()
@@ -56,8 +56,8 @@ class MatchManager {
                                       color: .blue,
                                       physicsContact: CollisionManager.getPlayerContact(),
                                       physicsCategory: CollisionManager.getPlayerCategory())
-        self.IAPlayer = PlayerViewModel(iaModel,
-                                        PlayerView("IA", "redPlayer", scene, CGPoint(x: -200, y: 0)),
+        self.IAPlayer = IAViewModel(iaModel,
+                                        IAView("IA", "redPlayer", scene, CGPoint(x: -200, y: 0)),
                                         MovementDirection.movementRight,
                                         color: .red,
                                         physicsContact: CollisionManager.getIAContact(),

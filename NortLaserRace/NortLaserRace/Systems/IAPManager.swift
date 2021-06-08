@@ -16,7 +16,7 @@ enum Skin: String {
 public class IAPManager: NSObject, SKPaymentTransactionObserver {
     let userDefaults: UserDefaults = UserDefaults.standard
     public var catalogDictionary: [String: Bool] =  [
-        Skin.tentacle.rawValue : false,
+        Skin.tentacle.rawValue: false,
         Skin.metroid.rawValue: false,
         Skin.suspicious.rawValue: false
     ]

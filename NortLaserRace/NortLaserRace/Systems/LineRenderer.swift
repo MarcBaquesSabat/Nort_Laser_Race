@@ -83,7 +83,6 @@ class LimitedPathRenderer {
             self.linearShapeNode!.physicsBody?.collisionBitMask = CollisionManager.getNullMask()
             self.linearShapeNode!.physicsBody?.contactTestBitMask = CollisionManager.getIAContact()
         }
-        
         scene.addChild(self.linearShapeNode!)
     }
     private func shortenLines(distanceToShorten: CGFloat) {
@@ -101,7 +100,8 @@ class LimitedPathRenderer {
             points[points.count - 1] = points[points.count - 1].moveTowards(points[points.count - 2], distanceToShorten)
 
         } else {
-            points[points.count - 1] = points[points.count - 1].moveTowards(points[points.count - 2], actualLastDistance)
+            points[points.count - 1] = points[points.count - 1].moveTowards(points[points.count - 2],
+                                                                            actualLastDistance)
             points.removeLast()
             shortenLines(distanceToShorten: distanceToShorten - actualLastDistance)
             return

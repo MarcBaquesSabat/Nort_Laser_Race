@@ -19,7 +19,15 @@ extension GameScene: SKPhysicsContactDelegate {
         let oneNodeIsPlayer = nameA.hasPrefix("Player") || nameB.hasPrefix("Player")
         let oneNodeIsIA = nameA.hasPrefix("IA") || nameB.hasPrefix("IA")
         let oneNodeIsBorder = nameA.hasPrefix("Border") || nameB.hasPrefix("Border")
-
+        let oneNodeIsDetector = nameA.hasPrefix("Detector") || nameB.hasPrefix("Detector")
+        if oneNodeIsDetector, oneNodeIsPlayer {
+            print("Detector - Player")
+            matchManager?.IAPlayer?.rotatePlayer(.movementDown)
+            matchManager?.IAPlayer?.disableColision()
+        }
+        if oneNodeIsDetector, oneNodeIsBorder {
+            print("Detector - Border")
+        }
         if oneNodeIsPlayer, oneNodeIsBorder {
             print("Player - Border")
             print("Node A: \(nameA) Node B: \(nameB)")

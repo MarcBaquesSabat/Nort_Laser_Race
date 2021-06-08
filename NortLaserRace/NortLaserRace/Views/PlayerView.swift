@@ -26,15 +26,9 @@ class PlayerView {
         sprite.physicsBody = SKPhysicsBody(texture: sprite.texture!, size: sprite.size)
         sprite.physicsBody!.affectedByGravity = false
         sprite.physicsBody!.allowsRotation = false
-        if self.sprite.name == "Player_1" {
-            sprite.physicsBody!.categoryBitMask = CollisionManager.getPlayerCategory()
-            sprite.physicsBody!.collisionBitMask = CollisionManager.getNullMask()
-            sprite.physicsBody!.contactTestBitMask = CollisionManager.getPlayerContact()
-        } else {
-            sprite.physicsBody!.categoryBitMask = CollisionManager.getIACategory()
-            sprite.physicsBody!.collisionBitMask = CollisionManager.getNullMask()
-            sprite.physicsBody!.contactTestBitMask = CollisionManager.getIAContact()
-        }
+        sprite.physicsBody!.categoryBitMask = CollisionManager.getPlayerCategory()
+        sprite.physicsBody!.collisionBitMask = CollisionManager.getNullMask()
+        sprite.physicsBody!.contactTestBitMask = CollisionManager.getPlayerContact()
     }
     func updatePosition(_ newPosition: CGPoint) {
         self.sprite.removeAllActions()

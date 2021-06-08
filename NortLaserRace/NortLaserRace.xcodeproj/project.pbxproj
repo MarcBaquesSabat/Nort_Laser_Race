@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		EF3B1FB4266EB8DD009382C9 /* AvatarRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3B1FB3266EB8DD009382C9 /* AvatarRepository.swift */; };
+		EF3B1FB626701099009382C9 /* IAViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3B1FB526701099009382C9 /* IAViewModel.swift */; };
+		EF3B1FB82670171C009382C9 /* IAView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3B1FB72670171C009382C9 /* IAView.swift */; };
 		EF47E7672641C6CA0046EFAA /* PlayerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF47E7662641C6CA0046EFAA /* PlayerModel.swift */; };
 		EF4FCB7D26513844002AA76A /* TimmerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF4FCB7C26513844002AA76A /* TimmerView.swift */; };
 		EF4FCB80265138FF002AA76A /* GameTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF4FCB7F265138FF002AA76A /* GameTimer.swift */; };
@@ -39,6 +41,8 @@
 
 /* Begin PBXFileReference section */
 		EF3B1FB3266EB8DD009382C9 /* AvatarRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarRepository.swift; sourceTree = "<group>"; };
+		EF3B1FB526701099009382C9 /* IAViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAViewModel.swift; sourceTree = "<group>"; };
+		EF3B1FB72670171C009382C9 /* IAView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAView.swift; sourceTree = "<group>"; };
 		EF47E7662641C6CA0046EFAA /* PlayerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerModel.swift; sourceTree = "<group>"; };
 		EF4FCB7C26513844002AA76A /* TimmerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimmerView.swift; sourceTree = "<group>"; };
 		EF4FCB7F265138FF002AA76A /* GameTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTimer.swift; sourceTree = "<group>"; };
@@ -133,6 +137,7 @@
 				EFA5D879264FE8CC00752B13 /* PlayerView.swift */,
 				EF4FCB7C26513844002AA76A /* TimmerView.swift */,
 				EFE4248C266D0A0900CCE86F /* HUDView.swift */,
+				EF3B1FB72670171C009382C9 /* IAView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -202,6 +207,7 @@
 				EFA5D885264FEA7900752B13 /* PlayerViewModel.swift */,
 				EF4FCB7F265138FF002AA76A /* GameTimer.swift */,
 				EFC9A8A82656DF7100B98F63 /* PlayerMovement.swift */,
+				EF3B1FB526701099009382C9 /* IAViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -314,6 +320,7 @@
 				EFA5D88E2650240000752B13 /* CollisionsManager.swift in Sources */,
 				EFA5D886264FEA7900752B13 /* PlayerViewModel.swift in Sources */,
 				EF47E7672641C6CA0046EFAA /* PlayerModel.swift in Sources */,
+				EF3B1FB82670171C009382C9 /* IAView.swift in Sources */,
 				EFA5D87D264FE96B00752B13 /* UserModel.swift in Sources */,
 				EF656276263B1D7B00C4DE6B /* GarageScene.swift in Sources */,
 				EF4FCB80265138FF002AA76A /* GameTimer.swift in Sources */,
@@ -321,6 +328,7 @@
 				EFA5D89126502AAB00752B13 /* GameScenePhysicsExtension.swift in Sources */,
 				EF656278263B1D7B00C4DE6B /* GameViewController.swift in Sources */,
 				EFC9A8A92656DF7100B98F63 /* PlayerMovement.swift in Sources */,
+				EF3B1FB626701099009382C9 /* IAViewModel.swift in Sources */,
 				EFA5D87A264FE8CC00752B13 /* PlayerView.swift in Sources */,
 				EF3B1FB4266EB8DD009382C9 /* AvatarRepository.swift in Sources */,
 				EF4FCB7D26513844002AA76A /* TimmerView.swift in Sources */,

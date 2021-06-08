@@ -1,31 +1,24 @@
 //
-//  PlayerViewModel.swift
+//  IAViewModel.swift
 //  NortLaserRace
 //
-//  Created by Alumne on 15/5/21.
+//  Created by Alumne on 8/6/21.
 //
 
 import Foundation
 import SpriteKit
 
-enum MovementDirection {
-    case movementUp
-    case movementDown
-    case movementRight
-    case movementLeft
-}
-
-class PlayerViewModel {
+class IAViewModel {
     private var moveAction: SKAction?
     private let moveActionKey: String = "moveActionKey"
-    private var pView: PlayerView?
+    private var pView: IAView?
     private var pModel: PlayerModel?
     private var speed: Double = 300
     private var direction: MovementDirection = .movementRight
     private let lineMargin: CGFloat = 2.0
     var lineManager: LimitedPathRenderer
     var canMove: Bool = false
-    init(_ playerModel: PlayerModel, _ playerView: PlayerView, _ direction: MovementDirection, color: SKColor,
+    init(_ playerModel: PlayerModel, _ playerView: IAView, _ direction: MovementDirection, color: SKColor,
          physicsContact: UInt32, physicsCategory: UInt32) {
         self.pView = playerView
         self.pModel = playerModel
@@ -45,6 +38,9 @@ class PlayerViewModel {
     func update(scene: SKScene) {
         self.lineManager.addPoint(point: getPosition())
         self.lineManager.update(scene: scene)
+    }
+    func updateDecision() {
+        
     }
     func setDirection(_ direction: MovementDirection) {
         self.direction = direction
@@ -74,6 +70,9 @@ class PlayerViewModel {
             self.movePlayer()
             self.lineManager.addPoint(point: getPosition())
         }
+    }
+    func disableColision() {
+        pView?.disableCollision()
     }
     func pause() {
         self.pView?.sprite.isPaused = true
