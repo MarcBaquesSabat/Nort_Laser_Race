@@ -18,6 +18,7 @@ class IAViewModel {
     private let lineMargin: CGFloat = 2.0
     var lineManager: LimitedPathRenderer
     var canMove: Bool = false
+    var updating: Bool = true
     init(_ playerModel: PlayerModel, _ playerView: IAView, _ direction: MovementDirection, color: SKColor,
          physicsContact: UInt32, physicsCategory: UInt32) {
         self.pView = playerView
@@ -34,13 +35,30 @@ class IAViewModel {
         setDirection(direction)
         moveAction = SKAction.move(by: directionToVector(self.direction), duration: 1.0 / speed)
         moveAction = SKAction.repeatForever(moveAction!)
+        self.pView!.setDetectorDirection(direction: self.direction)
     }
     func update(scene: SKScene) {
         self.lineManager.addPoint(point: getPosition())
         self.lineManager.update(scene: scene)
     }
-    func updateDecision() {
-        
+    func updateDecision(playerDirection: MovementDirection) {
+        print("I have to react")
+        self.updating = false
+        pView!.detectionSprite.run(SKAction.wait(forDuration: 1.0), completion: {
+            self.updating = true
+        })
+        var nextDirection: MovementDirection
+        if Bool.random() {
+            let nonMod = self.direction.rawValue - 1
+            let max = nonMod %% MovementDirection.max.rawValue
+            nextDirection = MovementDirection(rawValue: max)!
+        } else {
+            let nonMod = self.direction.rawValue + 1
+            let max = nonMod %% MovementDirection.max.rawValue
+            nextDirection = MovementDirection(rawValue: max)!
+        }
+        print("Actual: \(self.direction) Next: \(nextDirection)")
+        self.rotatePlayer(nextDirection)
     }
     func setDirection(_ direction: MovementDirection) {
         self.direction = direction
@@ -69,10 +87,21 @@ class IAViewModel {
             self.moveAction = SKAction.repeatForever(moveAction!)
             self.movePlayer()
             self.lineManager.addPoint(point: getPosition())
+            self.pView!.setDetectorDirection(direction: direction)
         }
     }
+    func setActionDirection(_ direction: MovementDirection) {
+        setDirection(direction)
+        self.pView?.sprite.removeAction(forKey: moveActionKey)
+        self.moveAction = SKAction.move(by: directionToVector(self.direction), duration: 1.0 / speed)
+        self.moveAction = SKAction.repeatForever(moveAction!)
+        self.pView!.setDetectorDirection(direction: direction)
+    }
     func disableColision() {
-        pView?.disableCollision()
+        updating = false
+    }
+    func enableColision() {
+        updating = true
     }
     func pause() {
         self.pView?.sprite.isPaused = true
@@ -128,7 +157,17 @@ class IAViewModel {
             return CGVector(dx: -1, dy: 0)
         case .movementRight:
             return CGVector(dx: +1, dy: 0)
+        case .max:
+            return CGVector(dx: 0, dy: 0)
         }
     }
+}
 
+infix operator %%
+extension Int {
+    static  func %% (_ left: Int, _ right: Int) -> Int {
+        if left >= 0 { return left % right }
+        if left >= -right { return (left+right) }
+        return ((left % right)+right)%right
+    }
 }

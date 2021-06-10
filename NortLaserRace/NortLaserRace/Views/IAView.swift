@@ -45,6 +45,36 @@ class IAView {
     func disableCollision() {
         self.detectionSprite.isHidden = true
     }
+    func disableCollisionTime(time: TimeInterval) {
+        disableCollision()
+        let action = SKAction.wait(forDuration: time)
+        sprite.run(action, completion: {
+            self.enableCollision()
+        })
+    }
+    func enableCollision() {
+        self.detectionSprite.isHidden = false
+    }
+    func setDetectorDirection(direction: MovementDirection) {
+        switch direction {
+        case .movementDown:
+            let point = self.sprite.position.y - 100
+            let pointX = self.sprite.position.x + 200
+            setDetectionPosition(newPosition: CGPoint(x: pointX, y: point))
+        case .movementRight:
+            let point = self.sprite.position.x + 300
+            setDetectionPosition(newPosition: CGPoint(x: point, y: self.sprite.position.y))
+        case .movementLeft:
+            let point = self.sprite.position.x + 90
+            setDetectionPosition(newPosition: CGPoint(x: point, y: self.sprite.position.y))
+        case .movementUp:
+            let point = self.sprite.position.y + 100
+            let pointX = self.sprite.position.x + 200
+            setDetectionPosition(newPosition: CGPoint(x: pointX, y: point))
+        default:
+            self.detectionSprite.position = CGPoint(x: 0, y: 0)
+        }
+    }
     func updatePosition(_ newPosition: CGPoint) {
         self.sprite.removeAllActions()
         self.sprite.run(SKAction.move(to: newPosition, duration: 1.0))

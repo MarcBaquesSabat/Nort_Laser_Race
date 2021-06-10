@@ -22,15 +22,16 @@ extension GameScene: SKPhysicsContactDelegate {
         let oneNodeIsDetector = nameA.hasPrefix("Detector") || nameB.hasPrefix("Detector")
         if oneNodeIsDetector, oneNodeIsPlayer {
             print("Detector - Player")
-            matchManager?.IAPlayer?.rotatePlayer(.movementDown)
-            matchManager?.IAPlayer?.disableColision()
+            matchManager?.collisionDetected(colisionEvent: .IADetection)
+            return
         }
         if oneNodeIsDetector, oneNodeIsBorder {
             print("Detector - Border")
+            matchManager?.collisionDetected(colisionEvent: .IADetection)
+            return
         }
         if oneNodeIsPlayer, oneNodeIsBorder {
             print("Player - Border")
-            print("Node A: \(nameA) Node B: \(nameB)")
             matchManager?.collisionDetected(colisionEvent: .playerBorder)
             return
         }

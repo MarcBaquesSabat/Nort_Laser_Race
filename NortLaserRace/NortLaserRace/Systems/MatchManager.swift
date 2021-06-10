@@ -14,6 +14,7 @@ enum ColisionEvent {
     case playerBorder
     case IAKillPlayer
     case playerKillIA
+    case IADetection
 }
 enum MatchState {
     case toStart
@@ -25,7 +26,7 @@ enum MatchState {
 class MatchManager {
     // Configuration
     let preparationTime = 3.0
-    let matchTime = 15.0
+    let matchTime = 180.0
     // Players
     var player: PlayerViewModel?
     var IAPlayer: IAViewModel?
@@ -58,7 +59,7 @@ class MatchManager {
                                       physicsCategory: CollisionManager.getPlayerCategory())
         self.IAPlayer = IAViewModel(iaModel,
                                         IAView("IA", "redPlayer", scene, CGPoint(x: -200, y: 0)),
-                                        MovementDirection.movementRight,
+                                        MovementDirection.movementDown,
                                         color: .red,
                                         physicsContact: CollisionManager.getIAContact(),
                                         physicsCategory: CollisionManager.getIACategory())
@@ -91,9 +92,11 @@ class MatchManager {
         if matchState == .toStart || matchState == .waitingRound {
             print("Start round")
             player?.canMove = true
+            IAPlayer?.setActionDirection(.movementLeft)
             player?.lineManager.start()
             player?.movePlayer()
             IAPlayer?.canMove = true
+            IAPlayer?.setActionDirection(.movementRight)
             IAPlayer?.movePlayer()
             IAPlayer?.lineManager.start()
             matchState = .round
@@ -143,6 +146,11 @@ class MatchManager {
                 player.addScore(score: 100)
                 IAPlayer.loseLife()
                 self.hudView.updateIAHealthView()
+            case .IADetection:
+                if IAPlayer.updating {
+                    IAPlayer.updateDecision(playerDirection: player.getDirection())
+                }
+                return
             }
             if player.isDead() || IAPlayer.isDead() {
                 endMatch()

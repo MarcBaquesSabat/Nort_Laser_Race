@@ -8,11 +8,12 @@
 import Foundation
 import SpriteKit
 
-enum MovementDirection {
-    case movementUp
-    case movementDown
-    case movementRight
-    case movementLeft
+enum MovementDirection: Int {
+    case movementUp = 0
+    case movementDown = 2
+    case movementRight = 1
+    case movementLeft = 3
+    case max = 4
 }
 
 class PlayerViewModel {
@@ -49,6 +50,9 @@ class PlayerViewModel {
     func setDirection(_ direction: MovementDirection) {
         self.direction = direction
     }
+    func getDirection() -> MovementDirection {
+        return self.direction
+    }
     func setPosition(_ newPosition: CGPoint) {
         self.pView?.sprite.removeAction(forKey: moveActionKey)
         self.pView?.updatePosition(newPosition)
@@ -74,6 +78,12 @@ class PlayerViewModel {
             self.movePlayer()
             self.lineManager.addPoint(point: getPosition())
         }
+    }
+    func setActionDirection(_ direction: MovementDirection) {
+        setDirection(direction)
+        self.pView?.sprite.removeAction(forKey: moveActionKey)
+        self.moveAction = SKAction.move(by: directionToVector(self.direction), duration: 1.0 / speed)
+        self.moveAction = SKAction.repeatForever(moveAction!)
     }
     func pause() {
         self.pView?.sprite.isPaused = true
@@ -129,6 +139,8 @@ class PlayerViewModel {
             return CGVector(dx: -1, dy: 0)
         case .movementRight:
             return CGVector(dx: +1, dy: 0)
+        case .max:
+            return CGVector(dx: 0, dy: 0)
         }
     }
 
